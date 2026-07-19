@@ -20,3 +20,5 @@ jobs:
           context: ./services/item-service/frontend
           push: true
           tags: origemglobaltecnologia/logistica-pro-item-frontend:latest
+
+# Forcar trigger
