@@ -1,13 +1,14 @@
 FROM eclipse-temurin:21-jdk-jammy AS build
 WORKDIR /app
 
-# Copia apenas o pom.xml e src
-COPY pom.xml ./
-COPY src ./src
+# Copia configurações do Maven e o wrapper
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
+RUN chmod +x mvnw && ./mvnw dependency:go-offline
 
-# Instala o Maven Wrapper se não existir ou usa o mvn instalado
-RUN chmod +x mvnw 2>/dev/null || true
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+# Copia o código fonte e compila
+COPY src ./src
+RUN ./mvnw clean package -DskipTests
 
 FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
