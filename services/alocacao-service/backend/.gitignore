@@ -7,3 +7,6 @@ target/
 *.log
 .DS_Store
 *.iml
+.gradle/
+build/
+bin/

@@ -1,0 +1,20 @@
+# Maven
+target/
+.mvn/
+mvnw
+mvnw.cmd
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+.settings/
+.project
+.classpath
+
+# Logs
+logs/
+*.log
+
+# Outros
+.DS_Store

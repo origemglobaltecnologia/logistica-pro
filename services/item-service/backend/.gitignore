@@ -1,0 +1,23 @@
+# Build/target directories
+target/
+build/
+bin/
+out/
+
+# IDE files
+.idea/
+.settings/
+.vscode/
+.classpath
+.project
+.factorypath
+
+# OS files
+.DS_Store
+Thumbs.db
+*~
+
+# Maven
+*.jar
+*.war
+*.log

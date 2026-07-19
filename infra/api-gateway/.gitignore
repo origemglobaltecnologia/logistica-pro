@@ -1,0 +1,12 @@
+target/
+.mvn/
+.idea/
+.settings/
+.vscode/
+bin/
+build/
+*.class
+*.jar
+*.war
+*.log
+.DS_Store
