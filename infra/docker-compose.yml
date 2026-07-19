@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend-aplicador:
+    build: ./backend/aplicador-de-volumes
+    ports:
+      - "8080:8080"
+    networks:
+      - logistica-net
+
+  frontend-alocacao:
+    build: ./frontend
+    ports:
+      - "8081:8081"
+    networks:
+      - logistica-net
+    depends_on:
+      - backend-aplicador
+
+  item-service-back:
+    build: ./item-service/backend
+    ports:
+      - "8082:8080"
+    networks:
+      - logistica-net
+
+  item-service-front:
+    build: ./item-service/frontend
+    ports:
+      - "8083:8081"
+    networks:
+      - logistica-net
+    depends_on:
+      - item-service-back
+
+networks:
+  logistica-net:
+    driver: bridge
