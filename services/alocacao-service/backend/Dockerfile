@@ -1,17 +1,14 @@
-# Estágio 1: Build
 FROM eclipse-temurin:21-jdk-jammy AS build
 WORKDIR /app
 
-# Copia arquivos do Maven para cache de dependências
-COPY .mvn/ .mvn/
-COPY mvnw pom.xml ./
-RUN chmod +x mvnw && ./mvnw dependency:go-offline
-
-# Copia o código fonte e compila
+# Copia apenas o pom.xml e src
+COPY pom.xml ./
 COPY src ./src
-RUN ./mvnw clean package -DskipTests
 
-# Estágio 2: Execução
+# Instala o Maven Wrapper se não existir ou usa o mvn instalado
+RUN chmod +x mvnw 2>/dev/null || true
+RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+
 FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
