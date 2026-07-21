@@ -7,8 +7,21 @@ export default function AlocacaoPage() {
   const [formData, setFormData] = useState({ id: '', codigo: '', altura: '7', largura: '10', comprimento: '1', quantidade: '863', desconto: '1' });
   const [itemVisualizado, setItemVisualizado] = useState<any>(null);
 
-      const API = 'http://100.111.96.79:8083/api/alocacoes';
+  const API = 'http://100.111.96.79:8083/api/alocacoes';
 
+  // Injeção da TAG e Inicialização do Eruda (DevTools Mobile)
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !window['eruda']) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/eruda';
+      script.onload = () => {
+        if (window['eruda']) {
+          window['eruda'].init();
+        }
+      };
+      document.head.appendChild(script);
+    }
+  }, []);
 
   const carregar = async () => { const res = await fetch(API); setData(await res.json()); };
 
