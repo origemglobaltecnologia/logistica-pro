@@ -7,7 +7,8 @@ export default function AlocacaoPage() {
   const [formData, setFormData] = useState({ id: '', codigo: '', altura: '7', largura: '10', comprimento: '1', quantidade: '863', desconto: '1' });
   const [itemVisualizado, setItemVisualizado] = useState<any>(null);
 
-    const API = `http://${typeof window !== 'undefined' ? window.location.hostname : '127.0.0.1'}:8083/api/alocacoes`;
+      const API = 'http://100.111.96.79:8083/api/alocacoes';
+
 
   const carregar = async () => { const res = await fetch(API); setData(await res.json()); };
 
